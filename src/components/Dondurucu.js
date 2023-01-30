@@ -10,7 +10,7 @@ Bu Dondurucu'yü oluşturmak için kaç adet state dilimine ihtiyacınız var? B
   - döndürücü görünür olduğunda veya değilken (bu belki boolean olabilir).
   - Button'daki yazı "Döndürcüyü Göster" veya "Döndürücüyü Gizle" olduğunda.
 
-Fakat tek bir state dilimi yeterlidir, döndürücü.
+Fakat tek bir state dilimi yeterlidir, döndürücü. 
 Metini bu state e göre yazdırabiliriz.
 
 ADIM 0:
@@ -35,12 +35,14 @@ ADIM 4:
   "not" için kullandığımız operatörü hatırlıyor musunuz??
 */
 
-import React from 'react'; /* STEP 0 */
+import React, {useState} from 'react'; /* STEP 0 */
 
 export default function Dondurucu() {
+  const [döndürücüAçık,setdöndürücüAcik] = useState(true);
 /* ADIM 1 */
 
   const toggleDondurucu = () => {
+    setdöndürücüAcik(!döndürücüAçık) 
   /* ADIM 4 */
   };
 
@@ -48,11 +50,12 @@ export default function Dondurucu() {
     <div className='widget-spinner container'>
       <h2>Döndürücü</h2>
       {
-        true && <div id='döndürücü' className='spinner'>--+--</div> /* ADIM 2 */
+      döndürücüAçık  && <div id='döndürücü' className='spinner'>--+--</div> /* ADIM 2 */
       }
-      <button id='toggleDondurucu' onClick={toggleDondurucu}>
-         Gizle {/* STEP 3 */}
+      <button id='toggleDondurucu' onClick={toggleDondurucu}>{
+        döndürücüAçık ? 'gizle': 'göster'
+      }
       </button>
     </div>
   );
-}
+} 
